@@ -1,0 +1,35 @@
+<template>
+    <lightning-card title="Account  Viewer">
+        <template if:true={accounts}>
+            <template for:each={accounts} for:item="acc">
+                <div key={acc.Id}>
+                    <strong>{acc.Name}</strong>
+                    <template if:true={acc.Contacts}>
+                        <ul>
+                            <template for:each={acc.Contacts} for:item="con">
+                                <li key={con.Id}>{con.LastName} ({con.Email})</li>
+                            </template>
+                        </ul>
+                    </template>
+                    <hr/>
+                </div>
+            </template>
+        </template>
+        <template if:false={accounts}>
+            <p>No Accounts Loaded.</p>
+        </template>
+    </lightning-card>
+
+    <lightning-card title="Custom Region Hierarchy">
+        <template if:true={regions}>
+            <template for:each={regions} for:item="region">
+                <div key={region.Id}>
+                    {region.Name} - {region.Type__c}
+                    <template if:true={region.Parent_Region__c}>
+                        (Parent: {region.Parent_Region__r.Name})
+                    </template>
+                </div>
+            </template>
+        </template>
+    </lightning-card>
+</template>
