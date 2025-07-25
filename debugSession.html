@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="LWC Debug Session">
+        <div class="slds-p-around_medium">
+            <lightning-button label="Call Apex" onclick={handleClick}></lightning-button>
+
+            <template if:true={showResult}>
+                <p class="slds-text-color_success"> {result}</p>
+            </template>
+
+           
+            <template if:true={showAccounts}>
+                <h3>📋 Accounts:</h3>
+                <template for:each={accounts} for:item="acc">
+                    <p key={acc.Id}>• {acc.Name}</p>
+                </template>
+            </template>
+
+            <template if:true={accountsError}>
+                <p class="slds-text-color_error">⚠️ Error fetching accounts</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>
